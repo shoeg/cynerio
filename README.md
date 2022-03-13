@@ -1,10 +1,10 @@
 # Cynerio backend assignment
 
-###Description
+##Description
 The server enables our team members to checkin/checkout on tasks they are working on and thus we
 can understand the efforts we invest in every task
 
-###Assumptions
+##Assumptions
  - Users cannot checkin to a task when a previous task is already in checkin status by them.
  - There is no task name validation, so any task can be worked on by any user multiple times.
  - report will return only completed tasks that were checked-out.
