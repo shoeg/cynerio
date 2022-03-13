@@ -14,9 +14,9 @@ describe("test routes", () => {
         console.log( "This part executes once before all test" );
     });
 
-    after(() => {
+    after(async () => {
         const database = config.test.database;
-        db.execute(`DROP DATABASE ${database};`);
+        await db.execute(`DROP DATABASE ${database};`);
         console.log( "This part executes once after all test" );
     });
 
