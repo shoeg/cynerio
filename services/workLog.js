@@ -1,12 +1,12 @@
 const db = require("../config/db");
+const config = require("../config/config.json");
+const database = process.env.NODE_ENV === 'test' ? config.test.database : config.dev.database
 
 async function create(user, task, currentDateTime) {
     let userName = user.toLowerCase();
     let taskName = task.toLowerCase();
-    console.log(userName);
-    console.log(taskName);
 
-    let sql = `INSERT INTO work_log(
+    let sql = `INSERT INTO ${database}.work_log(
       user_name,
       task_name,
       date_time
@@ -23,19 +23,16 @@ async function create(user, task, currentDateTime) {
 
 async function remove(user) {
     let userName = user.toLowerCase();
-    console.log(userName);
-
-    let sql = `DELETE FROM work_log WHERE user_name = '${userName}'`;
+    let sql = `DELETE FROM ${database}.work_log WHERE user_name = '${userName}'`;
     return db.execute(sql);
 }
 
 
 async function findUser(user) {
     let userName = user.toLowerCase();
-    console.log(userName);
     let sql = `
             SELECT * 
-            FROM work_log 
+            FROM ${database}.work_log 
             WHERE user_name = '${userName}';`;
     return db.execute(sql);
 }

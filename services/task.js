@@ -1,5 +1,7 @@
 const db = require("../config/db");
 const dateUtils = require("../utils/dateUtils");
+const config = require("../config/config.json");
+const database = process.env.NODE_ENV === 'test' ? config.test.database : config.dev.database
 
 async function getReport() {
     let sql = `
@@ -8,7 +10,7 @@ async function getReport() {
       task_name, 
       date_format(start_time, "%Y-%m-%d %H:%i:%s") start_date,
       date_format(end_time, "%Y-%m-%d %H:%i:%s") end_date
-      FROM tasks
+      FROM ${database}.tasks
       order by user_name;
     `
     return db.execute(sql);
@@ -20,7 +22,7 @@ async function create(workLog, currentDateTime) {
     let startTime = dateUtils.convertToDateFormat(workLog.date_time);
     let endTime = currentDateTime;
 
-    let sql = `INSERT INTO tasks(
+    let sql = `INSERT INTO ${database}.tasks(
       user_name,
       task_name,
       start_time,

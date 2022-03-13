@@ -2,14 +2,11 @@ const moment = require('moment');
 const format = 'YYYY-MM-DD HH:mm:ss';
 
 function getCurrentDateTime() {
-    let currentDateTime = moment.utc().format(format);
-    console.log(currentDateTime);
-    return currentDateTime;
+    return moment.utc().format(format);
 }
 
 function convertToDateFormat(date) {
-    let dateTime = moment(date).format(format);
-    return dateTime;
+    return moment(date).format(format);
 }
 
 function durationInHours(startDate,endDate) {

@@ -1,5 +1,7 @@
 require("dotenv").config();
 const mysql = require("mysql2");
+const config = require("../config/config.json");
+const database = process.env.NODE_ENV === 'test' ? config.test.database : config.dev.database
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -10,7 +12,7 @@ const pool = mysql.createPool({
 
 // create mySQL database
 pool.execute(`
-CREATE DATABASE IF NOT EXISTS cynerioDB;
+CREATE DATABASE IF NOT EXISTS ${database};
 `,
     (err, result) => {
         if (err) throw err;
@@ -20,7 +22,7 @@ CREATE DATABASE IF NOT EXISTS cynerioDB;
 
 // create work_log table
 pool.execute(`
-CREATE TABLE IF NOT EXISTS cynerioDB.work_log (
+CREATE TABLE IF NOT EXISTS ${database}.work_log (
   user_name varchar(100) NOT NULL,
   task_name varchar(100) NOT NULL,
   date_time datetime NOT NULL,
@@ -36,7 +38,7 @@ CREATE TABLE IF NOT EXISTS cynerioDB.work_log (
 
 // create tasks table
 pool.execute(`
-CREATE TABLE IF NOT EXISTS cynerioDB.tasks (
+CREATE TABLE IF NOT EXISTS ${database}.tasks (
   id int NOT NULL AUTO_INCREMENT,
   user_name varchar(100) NOT NULL,
   task_name varchar(100) NOT NULL,

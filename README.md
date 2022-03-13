@@ -12,9 +12,20 @@ can understand the efforts we invest in every task
 
 ## Running
 1. Download & install "MySQL Community Server" from  https://dev.mysql.com/downloads/
-2. Navigate into project folder in terminal and run `npm install`
-3. Add in your own database details inside the `.env` file
-4. To start and run the server, simply run the following command in your root directory:
+2. add ".env" file for local sql configuration
+```
+# node app environment variables
+PORT=3000
+
+# database connection environment variables
+DB_HOST=localhost
+DB_USER=
+DB_NAME=
+DB_PASSWORD=
+```
+3. Navigate into project folder in terminal and run `npm install`
+4. Add in your own database details inside the `.env` file
+5. To start and run the server, simply run the following command in your root directory:
 ```
 npm start
 ```

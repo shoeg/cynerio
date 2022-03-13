@@ -19,7 +19,6 @@ async function checkin(user, task) {
         // add user to work log
         const currentDateTime = dateUtils.getCurrentDateTime()
         await workLog.create(user, task, currentDateTime);
-
     } catch (err) {
         console.error(`Error while checkin - `, err.message);
         throw err;
@@ -33,7 +32,6 @@ async function checkout(user) {
         }
 
         const [workLogs, _] = await workLog.findUser(user);
-        console.log(workLogs);
 
         // check if user did not checkin before
         let isUserWorking = workLogs.length === 1;
@@ -43,10 +41,8 @@ async function checkout(user) {
 
         // add user to completed tasks
         let currentDateTime = dateUtils.getCurrentDateTime()
-        console.log(workLogs[0]);
         await task.create(workLogs[0], currentDateTime);
         await workLog.remove(user);
-
     } catch (err) {
         console.error(`Error while checkout - `, err.message);
         throw err;
