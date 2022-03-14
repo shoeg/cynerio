@@ -8,11 +8,17 @@ can understand the efforts we invest in every task
  - Users can't checkin to a task when a previous task is already in checkin status by them.
  - There is no task name validation, so any task can be worked on by any user multiple times.
  - report will return only completed tasks that were checked-out.
- - mySQL DB was used for persistence. 
+ - mySQL DB was used for persistence database. 
 
 ### Running
-1. Download & install "MySQL Community Server" from https://dev.mysql.com/downloads/
-2. add ".env" file for local sql configuration:
+1. Please make sure that you have Node.js installed (https://nodejs.org/)
+2. Download & install "MySQL Community Server" (https://dev.mysql.com/downloads/)
+3. Go to root project folder and run
+```
+npm install
+```
+
+4. Add local mySQL configurations to ".env" file
 ```
 # node app environment variables
 PORT=3000
@@ -24,11 +30,11 @@ DB_NAME=
 DB_PASSWORD=
 ```
 
-3. To start and run the server, execute this command in your root directory:
+5. To run the server, go to root directory and execute: 
 ```
 npm run start
 ```
-4. to run tests execute this command in your root directory:
+6. To run tests, go to root directory and execute: 
 ```
 npm run test
 ```
